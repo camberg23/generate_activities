@@ -25,6 +25,7 @@ four_or_eight = st.radio(
     "Choose your option:",
     ('Force positive/negative activity for each trait level (generates 8 activities)', 
      'Leave positive/negative assignment to LLM (generates 4 activities)')
+    index=0
 )
 
 if four_or_eight == 'Force positive/negative activity for each trait level (generates 8 activities)':

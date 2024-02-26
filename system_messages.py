@@ -130,3 +130,38 @@ Do not wrap this in ```json ```, just give the pure content of the array.
 
 YOUR OUTPUTS:
 """
+
+insights_generation = """
+Your job is to generate short insights for people who are high and low in the following traits: {SCALES}. You should generate {N} insights for HIGH scorers AND {N} insights for LOW scorers for EACH TRAIT! (total of N * 2 * number of traits)
+
+These will be sent to users as push notifications, so they should fit within that scope and context.
+
+The insights should be insightful (obviously) and valuable for someone who is high or low in that trait, and they should get something valuable from a push notification with the text of the insights.
+
+Please format your outputs as follows:
+{{
+  "Trait": "eg, Accomodating", 
+  "Trait Level": "HIGH/LOW",
+  "Insight": "The actual content of the insight"
+}}
+
+YOU SHOULD RETURN ALL SUCH ENTRIES FOR ALL TRAITS IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
+
+[
+  {{
+    "Trait": "eg, Accomodating", 
+    "Trait Level": "LOW",
+    "Insight": "The actual content of the insight"
+  }},
+  {{
+    "Trait": "eg, Accomodating", 
+    "Trait Level": "HIGH",
+    "Insight": "The actual content of the insight"
+  }},
+  ...
+]
+
+Do not wrap this in ```json ```, just give the pure content of the array.
+
+YOUR OUTPUTS:
+"""

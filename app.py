@@ -24,7 +24,7 @@ scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scal
 four_or_eight = st.radio(
     "Choose your option:",
     ('Force positive/negative activity for each trait level (generates 8 activities)', 
-     'Leave positive/negative assignment to LLM (generates 4 activities)')
+     'Leave positive/negative assignment to LLM (generates 4 activities)'),
     index=0
 )
 

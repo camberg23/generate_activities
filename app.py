@@ -7,6 +7,8 @@ from langchain.chains import LLMChain
 
 from system_messages import *
 
+st.title('TrueYou Activities Generator')
+
 # Assuming the DataFrame 'qs' is loaded as shown
 qs = pd.read_csv('questions.csv')
 

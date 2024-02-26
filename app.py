@@ -35,5 +35,5 @@ if st.button('Submit'):
             chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
             generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
             for_df.extend(json.loads(generated_output))
-
+    st.write(scale_items_dict)
     st.dataframe(pd.DataFrame(for_df))

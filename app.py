@@ -31,7 +31,7 @@ if st.button('Submit'):
       for scale, items in scale_items_dict.items():
           items_str = ", ".join(items)
           
-          chat_model = ChatOpenAI(openai_api_key=API_KEY, model_name='gpt-4-1106-preview', temperature=0.2)
+          chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
           chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
           generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
           for_df.extend(json.loads(generated_output))

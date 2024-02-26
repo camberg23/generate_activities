@@ -7,7 +7,8 @@ from langchain.chains import LLMChain
 
 from system_messages import *
 
-st.title('TrueYou Activities Generator')
+st.title('TrueYou Content Generation')
+st.markdown("## Activities Generator")
 
 # Assuming the DataFrame 'qs' is loaded as shown
 qs = pd.read_csv('questions.csv')
@@ -15,7 +16,7 @@ qs = pd.read_csv('questions.csv')
 sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
 scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
 
-selected_scales = st.multiselect("Select which scales you'd like to generate activities for:", scale_options)
+selected_scales = st.multiselect("Select which scales you'd like to generate activities for:", scale_options, key='activities')
 
 selected_scale_names = [s.split(" (")[0] for s in selected_scales]
 
@@ -56,5 +57,32 @@ if st.button('Submit'):
         label="Download this as CSV",
         data=csv,
         file_name='generated_activities.csv',
+        mime='text/csv',
+    )
+
+st.write("---")
+st.markdown("## Insights Generator")
+
+selected_scales_insights = st.multiselect("Select which scales you'd like to generate activities for:", scale_options, key='insights')
+
+if st.button('Submit'):
+    with st.spinner('Generating activities...'):
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
+        chat_chain = LLMChain(prompt=PromptTemplate.from_template(insights_generation), llm=chat_model)
+        generated_output = chat_chain.run(SCALES=selected_scales_insights)
+        make_df = json.loads(generated_output)
+    # st.write(scale_items_dict)
+    df = pd.DataFrame(make_df)
+    st.write('Generated scales:')
+    st.dataframe(df)
+
+    # Convert DataFrame to CSV string
+    insights_csv = df.to_csv(index=False)
+    
+    # Create a download button and offer the CSV string for download
+    st.download_button(
+        label="Download this as CSV",
+        data=insights_csv,
+        file_name='generated_insights.csv',
         mime='text/csv',
     )

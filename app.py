@@ -7,6 +7,8 @@ from langchain.chains import LLMChain
 
 from system_messages import *
 
+st.set_page_config(page_title='TrueYou Content Generator', page_icon=None, layout="wide")
+
 st.title('TrueYou Content Generation')
 st.markdown("## Activities Generator")
 
@@ -67,7 +69,7 @@ selected_scales_insights = st.multiselect("Select which scales you'd like to gen
 N = st.number_input("Number of insights to generate for each HIGH and LOW scorer per trait:", min_value=1, max_value=10, value=3)
 
 if st.button('Submit', key='insights_submit'):
-    with st.spinner('Generating activities...'):
+    with st.spinner('Generating insights...'):
         chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(insights_generation), llm=chat_model)
         generated_output = chat_chain.run(SCALES=selected_scales_insights, N=N)

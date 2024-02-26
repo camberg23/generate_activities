@@ -78,7 +78,7 @@ if st.button('Submit', key='insights_submit'):
     df = pd.DataFrame(make_df)
     st.write('Generated insights:')
     st.write(make_df)
-    with st.expander('See insights in spreadsheeet view')
+    with st.expander('See insights in spreadsheeet view'):
         st.dataframe(df, use_container_width=True)
 
     # Convert DataFrame to CSV string

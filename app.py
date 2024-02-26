@@ -77,7 +77,9 @@ if st.button('Submit', key='insights_submit'):
     # st.write(scale_items_dict)
     df = pd.DataFrame(make_df)
     st.write('Generated scales:')
-    st.dataframe(df)
+    col1, col2, col3 = st.columns([.1,6,.1])  # Adjust the ratio as needed
+    with col2:
+        st.dataframe(df, use_container_width=True)
 
     # Convert DataFrame to CSV string
     insights_csv = df.to_csv(index=False)

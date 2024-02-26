@@ -76,9 +76,9 @@ if st.button('Submit', key='insights_submit'):
         make_df = json.loads(generated_output)
     # st.write(scale_items_dict)
     df = pd.DataFrame(make_df)
-    st.write('Generated scales:')
-    col1, col2, col3 = st.columns([.1,6,.1])  # Adjust the ratio as needed
-    with col2:
+    st.write('Generated insights:')
+    st.write(make_df)
+    with st.expander('See insights in spreadsheeet view')
         st.dataframe(df, use_container_width=True)
 
     # Convert DataFrame to CSV string

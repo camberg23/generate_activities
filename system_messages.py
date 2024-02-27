@@ -38,7 +38,7 @@ Note:
 A POSITIVE version means an activity that plays on whatever stengths might be associated with being at that level for that trait. Any activity that asks for growth or something not naturally associated with this trait level should NOT be classified as positive!
 A NEGATIVE version means a growth-based activity that plays on the potential weaknesses of being at that level for that trait. Any activity that plays to an existing strength should not be classified as negative!
 
-YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
+YOU SHOULD RETURN FOUR SUCH ENTRIES FOR THE FOUR ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
 
 [
   {{

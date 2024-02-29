@@ -138,6 +138,10 @@ These will be sent to users as push notifications, so they should fit within tha
 
 The insights should be insightful (obviously) and valuable for someone who is high or low in that trait, and they should get something valuable from a push notification with the text of the insights.
 
+Additionally, it is advisable to occasionally use or reference famous/wise quotations as or within an insight.
+
+The insights should be meaningful and substantive, but almost fortune-cookie-like in their style.
+
 Please format your outputs as follows:
 {{
   "Trait": "eg, Accomodating", 

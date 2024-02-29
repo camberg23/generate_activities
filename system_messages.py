@@ -142,6 +142,8 @@ Additionally, it is advisable to occasionally use or reference famous/wise quota
 
 The insights should be meaningful and substantive, but almost fortune-cookie-like in their style.
 
+The insights should generally be no more than one sentence long (if it is a quote, it should just be the quote + attribution; otherwise, just the idea/insight).
+
 Please format your outputs as follows:
 {{
   "Trait": "eg, Accomodating", 

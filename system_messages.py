@@ -24,11 +24,11 @@ FORMATTING REQUIREMENTS:
 Format each of the four activities as a separate block, using a key-value pair format like this (this is just one example):
 
 {{
-  "Activity Type": "TIMED ACTIVITY",
+  "Activity Type": "TIMED ACTIVITY/REFLECTION",
   "Trait": {SCALE} 
-  "Trait Level": "HIGH",
-  "Title": "Nice and natural-sounding title for the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons)",
-  "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}",
+  "Trait Level": "HIGH/LOW",
+  "Title": "Simple, unique, natural-sounding title for the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
+  "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}. IT MUST BE THREE FULL SENTENCES OF BACKGROUND/CONTEXT.",
   "Activity": "The actual content of the activity",
   "Categorization": "Positive/Negative",
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"

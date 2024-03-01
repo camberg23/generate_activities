@@ -24,17 +24,8 @@ selected_scale_names = [s.split(" (")[0] for s in selected_scales]
 
 scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
 
-four_or_eight = st.radio(
-    "Choose your option:",
-    ('Force positive/negative activity for each trait level (generates 8 activities)', 
-     'Leave positive/negative assignment to LLM (generates 4 activities)'),
-    index=0
-)
-
-if four_or_eight == 'Force positive/negative activity for each trait level (generates 8 activities)':
-    prompt = generate_eight_activities
-else:
-    prompt = generate_four_activities
+# prompt = generate_four_activities
+prompt = generate_eight_activities
 
 if st.button('Submit'):
     with st.spinner('Generating activities...'):

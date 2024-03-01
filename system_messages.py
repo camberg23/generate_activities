@@ -74,8 +74,8 @@ Vague example of a timed activity: "Over the next 24 hours, try to do X."
 Reflections are essentially writing prompts that the user will take on as soon as they are presented with them.
 
 You will be asked to generate a POSITIVE and NEGATIVE version for each activity type x trait value. 
-A POSITIVE version means an activity that plays on whatever stengths might be associated with being at that level for that trait.
-A NEGATIVE version means a growth-based activity that plays on the potential weaknesses of being at that level for that trait.
+A POSITIVE version means an activity that plays on whatever STRENGTHS might be associated with being at that level (HIGH OR LOW) for that trait.
+A NEGATIVE version means a growth-based activity that plays on the potential WEAKNESSES of being at that level (HIGH OR LOW) for that trait.
 
 We will be generating activities related to trait {SCALE}. 
 Example items that comprise this trait in our application are as follows (some may be reverse-scored): {ITEMS}
@@ -87,14 +87,16 @@ Your job is to generate EIGHT activities related to trait {SCALE}:
 1a. One POSITIVE TIMED ACTIVITY for someone HIGH in trait {SCALE}
 1b. One NEGATIVE TIMED ACTIVITY for someone HIGH in trait {SCALE}
 
-2a. One POSITIVE TIMED ACTIVITY for someone LOW in trait {SCALE}
+2a. One POSITIVE TIMED ACTIVITY for someone LOW in trait {SCALE}*
 2b. One NEGATIVE TIMED ACTIVITY for someone LOW in trait {SCALE}
 
 3a. One POSITIVE REFLECTION for someone HIGH in trait {SCALE}
 3b. One NEGATIVE REFLECTION for someone HIGH in trait {SCALE}
 
-4a. One POSITIVE REFLECTION for someone LOW in trait {SCALE}
+4a. One POSITIVE REFLECTION for someone LOW in trait {SCALE}*
 4b. One NEGATIVE REFLECTION for someone LOW in trait {SCALE}
+
+*CRITICAL NOTE ON 2A AND 4A: IT MAY WELL BE EASIER TO COME UP WITH WEAKNESSES THAN STRENGTHS FOR BEING LOW IN {SCALE}, BUT THIS DOESN'T MATTER. DIG DEEP TO COME UP WITH ACTIVITIES/REFLECTIONS THAT INDEED PLAY ON THE *POSITIVES* OF BEING LOW IN {SCALE}.
 
 FORMATTING REQUIREMENTS:
 Format each of the eight activities as a separate block, using a key-value pair format like this (this is just one example):

@@ -28,12 +28,13 @@ Format each of the four activities as a separate block, using a key-value pair f
   "Trait": {SCALE} 
   "Trait Level": "HIGH/LOW",
   "Title": "Simple, unique, natural-sounding title for the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
-  "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}. IT MUST BE THREE FULL SENTENCES OF BACKGROUND/CONTEXT.",
+  "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}.",
   "Activity": "The actual content of the activity",
   "Categorization": "Positive/Negative",
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
 }}
 
+Emphasizing that the description should be longer than the activity itself. IT MUST BE THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
 Note: 
 A POSITIVE version means an activity that plays on whatever stengths might be associated with being at that level for that trait. Any activity that asks for growth or something not naturally associated with this trait level should NOT be classified as positive!
 A NEGATIVE version means a growth-based activity that plays on the potential weaknesses of being at that level for that trait. Any activity that plays to an existing strength should not be classified as negative!

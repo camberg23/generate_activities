@@ -27,8 +27,8 @@ Format each of the four activities as a separate block, using a key-value pair f
   "Activity Type": "TIMED ACTIVITY",
   "Trait": {SCALE} 
   "Trait Level": "HIGH",
-  "Title": "2-4 word title for the activity, with no word more than 10 characters. should be natural sounding, potentially beginning with an -ing word",
-  "Description": "something like 2-3 sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}",
+  "Title": "Nice and natural-sounding title for the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons)",
+  "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}",
   "Activity": "The actual content of the activity",
   "Categorization": "Positive/Negative",
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"

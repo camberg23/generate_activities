@@ -19,9 +19,11 @@ sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
 scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
 
 selected_scales = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
+selected_scale_name = selected_scale.split(" (")[0]
+scale_items_dict = {selected_scale_name: qs[qs['Scale Name'] == selected_scale_name]['Item Text'].tolist()}
 
 # selected_scale_names = [s.split(" (")[0] for s in selected_scales]
-scale_items_dict = qs[qs['Scale Name'].isin(selected_scales)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
+# scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
 
 # prompt = generate_four_activities
 

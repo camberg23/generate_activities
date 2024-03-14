@@ -74,8 +74,8 @@ Vague example of a timed activity: "Over the next 24 hours, try to do X."
 Reflections are essentially writing prompts that the user will take on as soon as they are presented with them.
 
 You will be asked to generate a POSITIVE and NEGATIVE version for each activity type x trait value. 
-A POSITIVE version means an activity that plays on whatever STRENGTHS might be associated with being at that level (HIGH OR LOW) for that trait.
-A NEGATIVE version means a GROWTH-BASED activity that plays on the potential WEAKNESSES of being at that level (HIGH OR LOW) for that trait.
+A POSITIVE version means an activity that plays on whatever STRENGTHS/ADVANTAGES might be associated with being at that level (HIGH OR LOW) for that trait.
+A NEGATIVE version means a GROWTH-BASED activity that plays on the potential WEAKNESSES/DISADVANTAGES of being at that level (HIGH OR LOW) for that trait.
 
 We will be generating activities related to trait {SCALE}. 
 Example items that comprise this trait in our application are as follows (some may be reverse-scored): {ITEMS}
@@ -103,6 +103,8 @@ FORMATTING REQUIREMENTS:
 You will have two outputs:
 OUTPUT 1—IDEATION: you should briefly reason generally about the four possibilities, apart from generating specific activities. You should think about the STRENGTHS (advantages) and WEAKNESSES (disadvantages) of being HIGH and LOW in the trait.
 You tend to have trouble coming up with WEAKNESSES of being HIGH in 'good' traits and the STRENGTHS of being LOW in 'good' traits (and the converse for 'bad' traits), so be sure to overcome this and dig deep (succinctly) in your reasoning.
+RECALL BOTH IN THIS AND IN THE NEXT OUTPUT THAT A 'POSITIVE' ACTIVITY SHOULD PLAY ON EXISTING STRENGTHS/ADVANTAGES OF THAT TRAIT LEVEL, WHILE A 'NEGATIVE' ACTIVITY SHOULD PLAY ON THE WEAKNESSES/DISADVANTAGES OF THAT TRAIT LEVEL. DON'T MIX THESE UP!
+
 ALWAYS begin this part with 'IDEATION:"
 
 OUTPUT 2—ACTIVITIES:

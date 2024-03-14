@@ -18,7 +18,7 @@ qs = pd.read_csv('questions.csv')
 sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
 scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
 
-selected_scales = st.multiselect("Select which scales you'd like to generate activities for:", scale_options, key='activities')
+selected_scales = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
 
 selected_scale_names = [s.split(" (")[0] for s in selected_scales]
 

@@ -18,7 +18,7 @@ qs = pd.read_csv('questions.csv')
 sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
 scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
 
-selected_scales = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
+selected_scale = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
 selected_scale_name = selected_scale.split(" (")[0]
 scale_items_dict = {selected_scale_name: qs[qs['Scale Name'] == selected_scale_name]['Item Text'].tolist()}
 

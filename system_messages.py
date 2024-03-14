@@ -75,7 +75,7 @@ Reflections are essentially writing prompts that the user will take on as soon a
 
 You will be asked to generate a POSITIVE and NEGATIVE version for each activity type x trait value. 
 A POSITIVE version means an activity that plays on whatever STRENGTHS might be associated with being at that level (HIGH OR LOW) for that trait.
-A NEGATIVE version means a growth-based activity that plays on the potential WEAKNESSES of being at that level (HIGH OR LOW) for that trait.
+A NEGATIVE version means a GROWTH-BASED activity that plays on the potential WEAKNESSES of being at that level (HIGH OR LOW) for that trait.
 
 We will be generating activities related to trait {SCALE}. 
 Example items that comprise this trait in our application are as follows (some may be reverse-scored): {ITEMS}
@@ -100,6 +100,12 @@ Your job is to generate EIGHT activities related to trait {SCALE}:
 DIG DEEP TO COME UP WITH ACTIVITIES/REFLECTIONS THAT INDEED PLAY ON THE *STRENGTHS* OF BEING LOW IN {SCALE} FOR 2A AND 4A! DO NOT ERRONEOUSLY SMUGGLE IN YOUR OWN VALUES INTO THESE QUESTIONS, AND JUST DO THE TASK AS INSTRUCTED.
 
 FORMATTING REQUIREMENTS:
+You will have two outputs:
+OUTPUT 1—IDEATION: you should briefly reason generally about the four possibilities, apart from generating specific activities. You should think about the STRENGTHS (advantages) and WEAKNESSES (disadvantages) of being HIGH and LOW in the trait.
+You tend to have trouble coming up with WEAKNESSES of being HIGH in 'good' traits and the STRENGTHS of being LOW in 'good' traits (and the converse for 'bad' traits), so be sure to overcome this and dig deep (succinctly) in your reasoning.
+ALWAYS begin this part with 'IDEATION:"
+
+OUTPUT 2—ACTIVITIES:
 Format each of the eight activities as a separate block, using a key-value pair format like this (this is just one example):
 
 {{
@@ -115,8 +121,9 @@ Format each of the eight activities as a separate block, using a key-value pair 
 
 Emphasizing that the description should be longer than the activity itself. IT MUST BE THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
 
-YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
+YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, EXACTLY LIKE SO:
 
+ACTIVITIES:
 [
   {{
     "Activity Type": "TIMED ACTIVITY",
@@ -133,7 +140,7 @@ YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FO
   ...
 ]
 
-Do not wrap this in ```json ```, just give the pure content of the array.
+Do not wrap this in ```json ```, just give the pure content of the array. Be sure to precede the array with the exact string 'ACTIVITIES:' so the output can be processed correctly.
 
 YOUR OUTPUTS:
 """

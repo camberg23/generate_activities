@@ -25,33 +25,45 @@ selected_scale_names = [s.split(" (")[0] for s in selected_scales]
 scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
 
 # prompt = generate_four_activities
-prompt = generate_eight_activities
 
+prompt = generate_eight_activities
 if st.button('Submit'):
     with st.spinner('Generating activities...'):
         for_df = []
+        ideations = []  # Store ideation texts here
         for scale, items in scale_items_dict.items():
             items_str = ", ".join(items)
 
             chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
             chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
             generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
-            for_df.extend(json.loads(generated_output))
-    st.write(for_df)
-    df = pd.DataFrame(for_df)
-    st.write('Generated activities:')
-    st.dataframe(df)
 
-    # Convert DataFrame to CSV string
-    csv = df.to_csv(index=False)
-    
-    # Create a download button and offer the CSV string for download
-    st.download_button(
-        label="Download this as CSV",
-        data=csv,
-        file_name='generated_activities.csv',
-        mime='text/csv',
-    )
+            # Splitting the generated_output into ideation and activities parts
+            ideation_part, activities_json = generated_output.split('ACTIVITIES:')
+            ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list
+
+            for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
+        
+        # Displaying ideations in an expander
+        with st.expander("Ideations"):
+            for ideation in ideations:
+                st.write(ideation)
+        
+        st.write(for_df)
+        df = pd.DataFrame(for_df)
+        st.write('Generated activities:')
+        st.dataframe(df)
+
+        # Convert DataFrame to CSV string
+        csv = df.to_csv(index=False)
+        
+        # Create a download button and offer the CSV string for download
+        st.download_button(
+            label="Download this as CSV",
+            data=csv,
+            file_name='generated_activities.csv',
+            mime='text/csv',
+        )
 
 st.write("---")
 st.markdown("## Insights Generator")

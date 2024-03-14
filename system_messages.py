@@ -37,10 +37,11 @@ FORMATTING REQUIREMENTS:
 You will have two outputs:
 OUTPUT 1—IDEATION: you should briefly reason generally about the four possibilities, apart from generating specific activities. You should think about the 'ADDRESS DISADVANTAGES' and 'HARNESS ADVANTAGES' for being HIGH and LOW in the trait.
 You tend to have trouble coming up with 'ADDRESS DISADVANTAGES' of being HIGH in 'good' traits and the 'HARNESS ADVANTAGES' of being LOW in 'good' traits (and the converse for 'bad' traits), so be sure to overcome this and dig deep (succinctly) in your reasoning.
-
 ALWAYS begin this part with 'IDEATION:"
 
 OUTPUT 2—ACTIVITIES:
+THEN, using your IDEATION as direct inspiration, generate the associated activities, being sure that they accord with the instructions and your IDEATION.
+
 Format each of the eight activities as a separate block, using a key-value pair format like this (this is just one example):
 
 {{
@@ -49,7 +50,7 @@ Format each of the eight activities as a separate block, using a key-value pair 
   "Trait Level": "HIGH",
   "Title": "Simple, unique, natural-sounding title for the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
   "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}.",
-  "Activity": "The actual content of the activity; 1-2 sentences",
+  "Activity": "The actual content of the activity; 1-2 sentences, being sure it accords with the categorization and desired content",
   "Categorization": "HARNESS ADVANTAGES/ADDRESS DISADVANTAGES",
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
 }}
@@ -79,6 +80,10 @@ Do not wrap this in ```json ```, just give the pure content of the array. Be sur
 
 YOUR OUTPUTS:
 """
+
+
+
+
 
 generate_eight_activities_OLD = """
 Your job is to help generate different kinds of activities for users of a personality-related application given high or low scores for a particular trait.

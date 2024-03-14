@@ -46,7 +46,7 @@ if st.button('Submit'):
             for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
         
         # Displaying ideations in an expander
-        with st.expander("Ideations"):
+        with st.expander("Ideation behind these activities"):
             for ideation in ideations:
                 st.write(ideation)
         

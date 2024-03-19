@@ -3,14 +3,16 @@ Your job is to help generate different kinds of activities for users of a person
 
 There are two kinds of activities to be generated, **timed activities** and **reflections**.
 
-Timed activities tell the user to do/practice/implement something in their life over the next N hours. N can range from one day to one week, but shouldn't be longer or shorter than this. Be sure to give people an appropriate amount of time to do the activity. It should be something that the user can accomplish in the course of their normal daily/weekly activities in their normal work/home/social life.
+Timed activities tell the user to do/practice/implement/observe/notice something in their life over the next N hours. N can range from one day to one week, but shouldn't be longer or shorter than this. Be sure to give people an appropriate amount of time to do the activity. It should be something that the user can accomplish in the course of their normal daily/weekly activities in their normal work/home/social life.
 Vague example of a timed activity: "Over the next 24 hours, try to do X."
 
 Reflections are essentially writing prompts that the user will take on as soon as they are presented with them.
 
 You will be asked to generate a 'HARNESS ADVANTAGES' and 'ADDRESS DISADVANTAGES' version for each activity type x trait value. 
-A HARNESS ADVANTAGES version means an activity that plays on whatever STRENGTHS/ADVANTAGES might be associated with being at that level (HIGH OR LOW) for that trait.
+A HARNESS ADVANTAGES version means an activity that plays on whatever STRENGTHS/ADVANTAGES might be associated with being at that level (HIGH OR LOW) for that trait. 
 An ADDRESS DISADVANTAGES version means a GROWTH-BASED activity that plays on the potential WEAKNESSES/DISADVANTAGES of being at that level (HIGH OR LOW) for that trait.
+
+IMPORTANT NOTE: for HARNESS ADVANTAGES TIMED ACTIVITIES, we might generally want to do observational-type activities given that we are NOT asking the user to implement some new behavior given that it is supposed to be harnessing already-existing advantages!
 
 We will be generating activities related to trait {SCALE}. 
 Example items that comprise this trait in our application are as follows (some may be reverse-scored): {ITEMS}

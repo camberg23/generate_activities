@@ -50,7 +50,7 @@ Format each of the eight activities as a separate block, using a key-value pair 
   "Activity Type": "TIMED ACTIVITY",
   "Trait": {SCALE} 
   "Trait Level": "HIGH",
-  "Title": "Simple, unique, natural-sounding title for the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
+  "Title": "Simple, unique, natural-sounding title/headline/encapsulation/foretaste of the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). DON'T MAKE IT TOO 'TITLE-Y', AND IT SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
   "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}.",
   "Activity": "The actual content of the activity; 1-2 sentences, being sure it accords with the categorization and desired content",
   "Categorization": "HARNESS ADVANTAGES/ADDRESS DISADVANTAGES",

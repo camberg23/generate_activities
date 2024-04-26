@@ -50,14 +50,18 @@ Format each of the eight activities as a separate block, using a key-value pair 
   "Activity Type": "TIMED ACTIVITY",
   "Trait": {SCALE} 
   "Trait Level": "HIGH",
-  "Title": "Simple, unique, natural-sounding title/headline/encapsulation/foretaste of the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). DON'T MAKE IT TOO 'TITLE-Y', AND IT SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
+  "Title": "Simple, unique, natural-sounding headline/teaser/foretaste of the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). DON'T MAKE IT TOO 'TITLE-Y', AND IT SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
   "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}.",
   "Activity": "The actual content of the activity; 1-2 sentences, being sure it accords with the categorization and desired content",
   "Categorization": "HARNESS ADVANTAGES/ADDRESS DISADVANTAGES",
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
 }}
 
-Emphasizing that the description should be longer than the activity itself. IT MUST BE THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
+Some more information on Description vs Activity text:
+-All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and no instructions, while the activity should include only instructions. 
+-Exemplar Description text (for trait 'accommodating'): Your ability to stand firm in your beliefs is a strength that can inspire confidence in others.  Often, your decisiveness can help to move projects forward or clarify goals. You can amplify this strength by observing and reflecting on the positive impacts of your assertiveness on team progress.
+-Examplar Activity text (for trait 'accommodating'): For the next 48 hours, observe how your assertiveness influences group decisions. In particular, pay attention to how your actions move things forward.
+- Emphasizing that the description should be longer than the activity itself. IT MUST BE AT LEAST THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
 
 YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, EXACTLY LIKE SO:
 

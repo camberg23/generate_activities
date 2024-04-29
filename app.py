@@ -70,6 +70,9 @@ if st.button('Submit'):
         ideation_part, activities_json = generated_output.split('ACTIVITIES:')
         ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list
 
+        st.write(ideation_part)
+        st.write(activities_json)
+        
         for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
         
         # Displaying ideations in an expander

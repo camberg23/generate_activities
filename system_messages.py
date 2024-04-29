@@ -122,7 +122,7 @@ Format each of the eight activities as a separate block, using a key-value pair 
   "Title": "Simple, unique, natural-sounding headline/teaser/foretaste of the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). DON'T MAKE IT TOO 'TITLE-Y', AND IT SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
   "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity is relevant to the user.
   "Activity": "The actual content of the activity; 1-2 sentences, being sure it accords with the categorization and desired content",
-  "Categorization": None,
+  "Categorization": null,
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
 }}
 

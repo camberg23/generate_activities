@@ -12,25 +12,6 @@ st.set_page_config(page_title='TrueYou Content Generator', page_icon=None, layou
 st.title('TrueYou Content Generation')
 st.markdown("## Activities Generator")
 
-# # Assuming the DataFrame 'qs' is loaded as shown
-# qs = pd.read_csv('questions.csv')
-
-# sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
-# scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
-
-# selected_scale = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
-# selected_scale_name = selected_scale.split(" (")[0]
-# scale_items_dict = {selected_scale_name: qs[qs['Scale Name'] == selected_scale_name]['Item Text'].tolist()}
-
-# # selected_scale_names = [s.split(" (")[0] for s in selected_scales]
-# # scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
-
-# # prompt = generate_four_activities
-
-# prompt = generate_eight_activities
-
-# Adding a radio button to choose between trait-specific or generic activities
-
 activity_type = st.radio("Choose the type of activities to generate:", ('Trait-Specific', 'Generic'))
 
 # Load DataFrame as before for trait-specific activity generation
@@ -69,19 +50,6 @@ if st.button('Submit'):
         # Splitting the generated_output into ideation and activities parts
         ideation_part, activities_json = generated_output.split('ACTIVITIES:')
         ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list
-
-        st.write(ideation_part)
-        st.write(activities_json)
-
-        try:
-            # Attempt to parse the JSON string
-            activities = json.loads(activities_json)
-            st.write("Parsed successfully:", activities)
-        except json.JSONDecodeError as e:
-            st.write("Failed to parse JSON:", str(e))
-            # To see where the error might be occurring, let's look at the context around the error position
-            error_position = e.pos
-            st.write("Context around error position:", activities_json[max(0, error_position-50):error_position+50])
             
         for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
         

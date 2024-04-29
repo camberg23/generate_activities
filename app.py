@@ -30,6 +30,7 @@ st.markdown("## Activities Generator")
 # prompt = generate_eight_activities
 
 # Adding a radio button to choose between trait-specific or generic activities
+
 activity_type = st.radio("Choose the type of activities to generate:", ('Trait-Specific', 'Generic'))
 
 if activity_type == 'Trait-Specific':
@@ -47,6 +48,7 @@ else:
     # For generic activity generation, no need for scale selection
     scale_items_dict = {}  # Empty dictionary as no specific scale is needed
     prompt = generate_generic_activities
+    input = st.text_input("Enter any additional context you might want to give to generate these generic/univerally applicable activities")
     
 if st.button('Submit'):
     with st.spinner('Generating activities...'):
@@ -57,8 +59,10 @@ if st.button('Submit'):
 
             chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
             chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
-            generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
-
+            if activity_type == 'Trait-Specific':
+                generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
+            else:
+                generated_output = chat_chain.run(INPUT=input)
             # Splitting the generated_output into ideation and activities parts
             ideation_part, activities_json = generated_output.split('ACTIVITIES:')
             ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list

@@ -58,7 +58,7 @@ Format each of the eight activities as a separate block, using a key-value pair 
 }}
 
 Some more information on Description vs Activity text:
--All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and NO instructions, while the activity should include only instructions. 
+-All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and NO instructions (and NO language that references the time window of the activity!), while the activity should include only instructions, practical details of the activity, etc. 
 -Exemplar Description text (for trait 'accommodating'): Your ability to stand firm in your beliefs is a strength that can inspire confidence in others.  Often, your decisiveness can help to move projects forward or clarify goals. You can amplify this strength by observing and reflecting on the positive impacts of your assertiveness on team progress.
 -Examplar Activity text (for trait 'accommodating'): For the next 48 hours, observe how your assertiveness influences group decisions. In particular, pay attention to how your actions move things forward.
 - Emphasizing that the description should be longer than the activity itself. IT MUST BE AT LEAST THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!

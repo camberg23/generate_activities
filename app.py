@@ -72,7 +72,17 @@ if st.button('Submit'):
 
         st.write(ideation_part)
         st.write(activities_json)
-        
+
+        try:
+            # Attempt to parse the JSON string
+            activities = json.loads(json_data)
+            st.write("Parsed successfully:", activities)
+        except json.JSONDecodeError as e:
+            st.write("Failed to parse JSON:", str(e))
+            # To see where the error might be occurring, let's look at the context around the error position
+            error_position = e.pos
+            st.write("Context around error position:", json_data[max(0, error_position-50):error_position+50])
+            
         for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
         
         # Displaying ideations in an expander

@@ -75,13 +75,13 @@ if st.button('Submit'):
 
         try:
             # Attempt to parse the JSON string
-            activities = json.loads(json_data)
+            activities = json.loads(activities_json)
             st.write("Parsed successfully:", activities)
         except json.JSONDecodeError as e:
             st.write("Failed to parse JSON:", str(e))
             # To see where the error might be occurring, let's look at the context around the error position
             error_position = e.pos
-            st.write("Context around error position:", json_data[max(0, error_position-50):error_position+50])
+            st.write("Context around error position:", activities_json[max(0, error_position-50):error_position+50])
             
         for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
         

@@ -110,8 +110,8 @@ Your job is to generate EIGHT generally-relevant activities: FOUR TIMED ACTIVITI
 
 FORMATTING REQUIREMENTS:
 You will have two outputs:
-OUTPUT 1—IDEATION: you should briefly reason generally about what the content of the activities and reflections should be. They should not be overly redundant or repetitive with one another.
-OUTPUT 2—ACTIVITIES: Using your IDEATION as direct inspiration, generate the associated activities, being sure that they accord with the instructions and your IDEATION.
+OUTPUT 1—IDEATION: you should briefly reason generally about what the content of the activities and reflections should be. They should not be overly redundant or repetitive with one another. Begin this with the string 'IDEATION:'
+OUTPUT 2—ACTIVITIES: Using your IDEATION as direct inspiration, generate the associated activities, being sure that they accord with the instructions and your IDEATION. Begin this with the string 'ACTIVITIES:'
 
 Format each of the eight activities as a separate block, using a key-value pair format like this (this is just one example):
 
@@ -132,7 +132,9 @@ Some more information on Description vs Activity text:
 -Examplar Activity text (for trait 'accommodating'): For the next 48 hours, observe how your assertiveness influences group decisions. In particular, pay attention to how your actions move things forward.
 - Emphasizing that the description should be longer than the activity itself. IT MUST BE AT LEAST THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
 
-YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, EXACTLY LIKE SO:
+YOU SHOULD RETURN EIGHT SUCH ENTRIES (WITH IDEATION) FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, EXACTLY LIKE SO:
+IDEATION: 
+...
 
 ACTIVITIES:
 [

@@ -58,7 +58,7 @@ Format each of the eight activities as a separate block, using a key-value pair 
 }}
 
 Some more information on Description vs Activity text:
--All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and no instructions, while the activity should include only instructions. 
+-All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and NO instructions, while the activity should include only instructions. 
 -Exemplar Description text (for trait 'accommodating'): Your ability to stand firm in your beliefs is a strength that can inspire confidence in others.  Often, your decisiveness can help to move projects forward or clarify goals. You can amplify this strength by observing and reflecting on the positive impacts of your assertiveness on team progress.
 -Examplar Activity text (for trait 'accommodating'): For the next 48 hours, observe how your assertiveness influences group decisions. In particular, pay attention to how your actions move things forward.
 - Emphasizing that the description should be longer than the activity itself. IT MUST BE AT LEAST THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
@@ -86,6 +86,78 @@ Do not wrap this in ```json ```, just give the pure content of the array. Be sur
 
 YOUR OUTPUTS:
 """
+
+
+
+generate_generic_activities = """
+Your job is to help generate different kinds of activities for users of a personality-related application.
+
+There are two kinds of activities to be generated, **timed activities** and **reflections**.
+
+Timed activities tell the user to do/practice/implement/observe/notice something in their life over the next N hours. N can range from one day to one week, but shouldn't be longer or shorter than this. Be sure to give people an appropriate amount of time to do the activity. It should be something that the user can accomplish in the course of their normal daily/weekly activities in their normal work/home/social life.
+Vague example of a timed activity: "Over the next 24 hours, try to do X."
+
+Reflections are essentially writing prompts that the user will take on as soon as they are presented with them.
+
+We will be not generating activities related to any trait: instead, we are generating activities that are universally relevant regardless of one's personality.
+These should likely be fundamentally self-reflective/observational in nature.
+
+Also, be sure not to make the activities sound patronizing, judgy, or condescending.
+
+The user may have optionally given additional guidance about how to generate these activites, which should be interpreted within the broader guidance given here: {INPUT}
+
+Your job is to generate EIGHT generally-relevant activities: FOUR TIMED ACTIVITIES and FOUR REFLECTIONS.
+
+FORMATTING REQUIREMENTS:
+You will have two outputs:
+OUTPUT 1—IDEATION: you should briefly reason generally about what the content of the activities and reflections should be. They should not be overly redundant or repetitive with one another.
+OUTPUT 2—ACTIVITIES: Using your IDEATION as direct inspiration, generate the associated activities, being sure that they accord with the instructions and your IDEATION.
+
+Format each of the eight activities as a separate block, using a key-value pair format like this (this is just one example):
+
+{{
+  "Activity Type": "TIMED ACTIVITY",
+  "Trait": None
+  "Trait Level": None,
+  "Title": "Simple, unique, natural-sounding headline/teaser/foretaste of the activity; 30 characters MAX, with no word more than 10 characters (for formatting reasons). DON'T MAKE IT TOO 'TITLE-Y', AND IT SHOULD NOT USE THE WORDS TIMED, ACTIVITY, REFLECTION",
+  "Description": "3 solid sentences that give the motivation/framing/introduction of why this activity might be relevant to someone who is low/high in {SCALE}.",
+  "Activity": "The actual content of the activity; 1-2 sentences, being sure it accords with the categorization and desired content",
+  "Categorization": None,
+  "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
+}}
+
+Some more information on Description vs Activity text:
+-All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and NO instructions, while the activity should include only instructions. 
+-Exemplar Description text (for trait 'accommodating'): Your ability to stand firm in your beliefs is a strength that can inspire confidence in others.  Often, your decisiveness can help to move projects forward or clarify goals. You can amplify this strength by observing and reflecting on the positive impacts of your assertiveness on team progress.
+-Examplar Activity text (for trait 'accommodating'): For the next 48 hours, observe how your assertiveness influences group decisions. In particular, pay attention to how your actions move things forward.
+- Emphasizing that the description should be longer than the activity itself. IT MUST BE AT LEAST THREE FULL SENTENCES OF BACKGROUND/CONTEXT; ANYTHING SHORTER IS UNACCEPTABLE!
+
+YOU SHOULD RETURN EIGHT SUCH ENTRIES FOR THE EIGHT ACTIVITIES IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, EXACTLY LIKE SO:
+
+ACTIVITIES:
+[
+  {{
+    "Activity Type": "TIMED ACTIVITY",
+    "Trait": None,
+    "Trait Level": None,
+    ...
+  }},
+  {{
+    "Activity Type": "TIMED ACTIVITY",
+    "Trait": None,
+    "Trait Level": None,
+    ...
+  }},
+  ...
+]
+
+Do not wrap this in ```json ```, just give the pure content of the array. Be sure to precede the array with the exact string 'ACTIVITIES:' so the output can be processed correctly.
+
+YOUR OUTPUTS:
+"""
+
+
+
 
 
 

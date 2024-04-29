@@ -52,20 +52,25 @@ if st.button('Submit'):
     with st.spinner('Generating activities...'):
         for_df = []
         ideations = []  # Store ideation texts here
-        for scale, items in scale_items_dict.items():
-            items_str = ", ".join(items)
 
-            chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
-            chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
-            if activity_type == 'Trait-Specific':
-                generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
-            else:
-                generated_output = chat_chain.run(INPUT=input)
-            # Splitting the generated_output into ideation and activities parts
-            ideation_part, activities_json = generated_output.split('ACTIVITIES:')
-            ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
+        chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
+        
+        if activity_type == 'Trait-Specific':        
+    
+            for scale, items in scale_items_dict.items():
+                items_str = ", ".join(items)
+            
+            generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
+            
+        else:
+            generated_output = chat_chain.run(INPUT=input)
+            
+        # Splitting the generated_output into ideation and activities parts
+        ideation_part, activities_json = generated_output.split('ACTIVITIES:')
+        ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list
 
-            for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
+        for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
         
         # Displaying ideations in an expander
         with st.expander("Ideation behind these activities"):

@@ -12,22 +12,42 @@ st.set_page_config(page_title='TrueYou Content Generator', page_icon=None, layou
 st.title('TrueYou Content Generation')
 st.markdown("## Activities Generator")
 
-# Assuming the DataFrame 'qs' is loaded as shown
-qs = pd.read_csv('questions.csv')
+# # Assuming the DataFrame 'qs' is loaded as shown
+# qs = pd.read_csv('questions.csv')
 
-sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
-scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
+# sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
+# scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
 
-selected_scale = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
-selected_scale_name = selected_scale.split(" (")[0]
-scale_items_dict = {selected_scale_name: qs[qs['Scale Name'] == selected_scale_name]['Item Text'].tolist()}
+# selected_scale = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
+# selected_scale_name = selected_scale.split(" (")[0]
+# scale_items_dict = {selected_scale_name: qs[qs['Scale Name'] == selected_scale_name]['Item Text'].tolist()}
 
-# selected_scale_names = [s.split(" (")[0] for s in selected_scales]
-# scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
+# # selected_scale_names = [s.split(" (")[0] for s in selected_scales]
+# # scale_items_dict = qs[qs['Scale Name'].isin(selected_scale_names)].groupby('Scale Name')['Item Text'].apply(list).to_dict()
 
-# prompt = generate_four_activities
+# # prompt = generate_four_activities
 
-prompt = generate_eight_activities
+# prompt = generate_eight_activities
+
+# Adding a radio button to choose between trait-specific or generic activities
+activity_type = st.radio("Choose the type of activities to generate:", ('Trait-Specific', 'Generic'))
+
+if activity_type == 'Trait-Specific':
+    # Load DataFrame as before for trait-specific activity generation
+    qs = pd.read_csv('questions.csv')
+    sorted_df = qs.sort_values(by=['Cat', 'Scale Name'])
+    scale_options = [f"{row['Scale Name']} ({row['Cat']})" for _, row in sorted_df.drop_duplicates(['Scale Name', 'Cat']).iterrows()]
+
+    selected_scale = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
+    selected_scale_name = selected_scale.split(" (")[0]
+    scale_items_dict = {selected_scale_name: qs[qs['Scale Name'] == selected_scale_name]['Item Text'].tolist()}
+
+    prompt = generate_eight_activities
+else:
+    # For generic activity generation, no need for scale selection
+    scale_items_dict = {}  # Empty dictionary as no specific scale is needed
+    prompt = generate_generic_activities
+    
 if st.button('Submit'):
     with st.spinner('Generating activities...'):
         for_df = []

@@ -57,6 +57,8 @@ Format each of the eight activities as a separate block, using a key-value pair 
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
 }}
 
+Exemplar titles: Mediating peace, Voicing your views, Asserting your beliefs, Moments of gratitude, Change of pace, Observing dynamics, Taking stock of values, Surprising reactions, Letter to myself, Day's end reflection, Mindful listening, Seeking feedback, Acts of kindness, Flexing strengths
+
 Some more information on Description vs Activity text:
 -All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and NO instructions (and NO language that references the time window of the activity!), while the activity should include only instructions, practical details of the activity, etc. 
 -Exemplar Description text (for trait 'accommodating'): Your ability to stand firm in your beliefs is a strength that can inspire confidence in others.  Often, your decisiveness can help to move projects forward or clarify goals. You can amplify this strength by observing and reflecting on the positive impacts of your assertiveness on team progress.

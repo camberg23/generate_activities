@@ -106,7 +106,8 @@ These should likely be fundamentally self-reflective/observational in nature.
 
 Also, be sure not to make the activities sound patronizing, judgy, or condescending.
 
-The user may have optionally given additional guidance about how to generate these activites, which should be interpreted within the broader guidance given here: {INPUT}
+The user may have optionally given additional guidance about how to generate these activites, which MUST be integrated within the broader guidance given here AT ALL COSTS: {INPUT}
+Try to get creative and think outside the box with your activities. It is fine to do an activity about active listening and one about gratitude, but NOT EVERY TIME!
 
 Your job is to generate EIGHT generally-relevant activities: FOUR TIMED ACTIVITIES and FOUR REFLECTIONS.
 
@@ -127,6 +128,8 @@ Format each of the eight activities as a separate block, using a key-value pair 
   "Categorization": null,
   "Domain": "Self/Relationships/Purpose (whichever seems closest, this categorization is not a big deal)"
 }}
+
+Exemplar titles: Mediating peace, Voicing your views, Asserting your beliefs, Moments of gratitude, Change of pace, Observing dynamics, Taking stock of values, Surprising reactions, Letter to myself, Day's end reflection, Mindful listening, Seeking feedback, Acts of kindness, Flexing strengths
 
 Some more information on Description vs Activity text:
 -All concrete/practical information about the activity should be in the Activity, not the Description. The Description should include only context, and NO instructions, while the activity should include only instructions. 

@@ -119,14 +119,15 @@ if st.button('Submit', key='trait_text_submit'):
         chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(trait_text_generation), llm=chat_model)
         
-        trait_description = scales_df[scales_df['key'] == selected_trait]['Description'].values[0]
+        trait_info = scales_df[scales_df['key'] == selected_trait]
+        trait_description = trait_info['Description'].values[0]
+        high_label = trait_info['High Label'].values[0]
+        low_label = trait_info['Low Label'].values[0]
+        UI_label = trait_info['UI Label'].values[0]
         
         trait_texts = {}
         for level in selected_levels:
-            st.write(selected_trait)
-            st.write(level)
-            st.write(trait_description)
-            generated_output = chat_chain.run(TRAIT=selected_trait, LEVEL=level, DESCRIPTION=trait_description)
+            generated_output = chat_chain.run(TRAIT=selected_trait, HI=high_label, LO=low_label, UI=UI_label, LEVEL=level, DESCRIPTION=trait_description)
             trait_texts[level] = generated_output
         
         for level, text in trait_texts.items():

@@ -362,7 +362,8 @@ YOUR OUTPUTS:
 
 
 trait_text_generation = """
-Your job is to generate about two paragraphs of content for someone who scores {LEVEL} in {TRAIT}. Context about how we are defining {TRAIT}: {DESCRIPTION}
+Your job is to generate about two paragraphs of content for someone who scores {LEVEL} in {TRAIT}. Context about how we are defining {TRAIT}: {DESCRIPTION} 
+We present this trait to the user as {UI} and refer to being low in it as {LO} and high in it as {HI}. Please use this language if you are referring to the trait explicitly in your writing, though you can still use {TRAIT} as a synonym if desired/appropriate.
 
 The content should be as follows:
 1. One short paragraph related to the STRENGTHS/PROS related to being {LEVEL} in {TRAIT}.
@@ -370,6 +371,8 @@ The content should be as follows:
 3. One short paragraph about how being {LEVEL} in {TRAIT} might practically manifest/play out in one's day-to-day life.
 
 Note: try to not insult or use harsh language in 2. above, massage it to get the ideas across without it coming off as judgmental.
+
+Format this simply as three cohesive, clean, and natural sounding paragraphs.
 
 YOUR OUTPUTS:
 """

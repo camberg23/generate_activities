@@ -116,7 +116,7 @@ selected_levels = st.multiselect("Select levels to generate text for:", ['low', 
 
 if st.button('Submit', key='trait_text_submit'):
     with st.spinner('Generating trait text...'):
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(trait_text_generation), llm=chat_model)
         
         trait_info = scales_df[scales_df['key'] == selected_trait]

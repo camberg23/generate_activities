@@ -123,7 +123,7 @@ if st.button('Submit', key='trait_text_submit'):
         trait_description = trait_info['Description'].values[0]
         high_label = trait_info['High Label'].values[0]
         low_label = trait_info['Low Label'].values[0]
-        UI_label = trait_info['UI Label'].values[0]
+        UI_label = trait_info['UI Title'].values[0]
         
         trait_texts = {}
         for level in selected_levels:

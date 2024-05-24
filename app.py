@@ -82,7 +82,7 @@ N = st.number_input("Number of insights to generate for each HIGH and LOW scorer
 
 if st.button('Submit', key='insights_submit'):
     with st.spinner('Generating insights...'):
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(insights_generation), llm=chat_model)
         generated_output = chat_chain.run(SCALES=selected_scales_insights, N=N)
         make_df = json.loads(generated_output)

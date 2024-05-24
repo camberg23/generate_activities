@@ -123,7 +123,7 @@ if st.button('Submit', key='trait_text_submit'):
         
         trait_texts = {}
         for level in selected_levels:
-            st.write(selected trait)
+            st.write(selected_trait)
             st.write(level)
             st.write(trait_description)
             generated_output = chat_chain.run(TRAIT=selected_trait, LEVEL=level, DESCRIPTION=trait_description)

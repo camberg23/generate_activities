@@ -363,17 +363,17 @@ YOUR OUTPUTS:
 
 trait_text_generation = """
 Your job is to generate about two paragraphs of content for someone who scores {LEVEL} in {TRAIT}. Context about how we are defining {TRAIT}: {DESCRIPTION} 
-We present this trait to the user as {UI} and refer to being low in it as {LO} and high in it as {HI}. Please use this language if you are referring to the trait explicitly in your writing, but integrate it naturally (don't capitalize it or treat it as a piece of nomenclature, just integrate these descriptors seamlessly into the writing).
-Do not invoke the name {TRAIT}, instead opt for {UI}, {LO}, {HI}. Again, use these descriptors in a natural way (don't say things like "what we might call 'Challenging'", just say something more like 'people who might be considered more challenging').
+We present this trait to the user as {UI} and refer to being low in it as {LO} and high in it as {HI}. Please use this language if you are referring to the trait explicitly in your writing, but integrate it naturally (NEVER capitalize it or treat it as a piece of nomenclature, just integrate these descriptors seamlessly into the writing).
+Do not invoke the name {TRAIT}, instead opt for {UI}, {LO}, {HI}. Again, use these descriptors in a natural way (eg, don't say things like "what we might call 'Challenging'", just say something more like 'people who might be considered more challenging').
 
 The content should be as follows:
-1. One short paragraph related to the STRENGTHS/PROS related to being {LEVEL} in {TRAIT}.
-2. One short paragraph related to the WEAKNESSES/CONS/GROWTH OPPORTUNITIES related to being {LEVEL} in {TRAIT}.
-3. One short paragraph about how being {LEVEL} in {TRAIT} might practically manifest/play out in one's day-to-day life.
+1. One paragraph related to the STRENGTHS/PROS related to being {LEVEL} in {TRAIT}.
+2. One paragraph related to the WEAKNESSES/CONS/GROWTH OPPORTUNITIES related to being {LEVEL} in {TRAIT}.
+3. One paragraph about how being {LEVEL} in {TRAIT} might practically manifest/play out in one's day-to-day life.
 
 Note: try to not insult or use harsh language in 2. above, massage it to get the ideas across without it coming off as judgmental.
 
-Format this simply as three cohesive, clean, and natural sounding paragraphs.
+Format this simply as three cohesive, clean, and natural sounding paragraphs. DO NOT CAPITALIZE TRAIT NAMES!
 
 YOUR OUTPUTS:
 """

@@ -359,3 +359,17 @@ Do not wrap this in ```json ```, just give the pure content of the array.
 
 YOUR OUTPUTS:
 """
+
+
+trait_text_generation = """
+Your job is to generate about two paragraphs of content for someone who scores {LEVEL} in {TRAIT}. Context about how we are defining {TRAIT}: {DESCRIPTION}
+
+The content should be as follows:
+1. One short paragraph related to the STRENGTHS/PROS related to being {LEVEL} in {TRAIT}.
+2. One short paragraph related to the WEAKNESSES/CONS/GROWTH OPPORTUNITIES related to being {LEVEL} in {TRAIT).
+3. One short paragraph about how being {LEVEL} in {TRAIT} might practically manifest/play out in one's day-to-day life.
+
+Note: try to not insult or use harsh language in 2. above, massage it to get the ideas across without it coming off as judgmental.
+
+YOUR OUTPUTS:
+"""

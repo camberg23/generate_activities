@@ -34,7 +34,7 @@ if st.button('Submit'):
         for_df = []
         ideations = []  # Store ideation texts here
 
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         if activity_type == 'Trait-Specific':        

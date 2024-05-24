@@ -103,3 +103,29 @@ if st.button('Submit', key='insights_submit'):
         file_name='generated_insights.csv',
         mime='text/csv',
     )
+
+st.write("---")
+st.markdown("## Trait Text Generator")
+
+# Load scales DataFrame for trait text generator
+scales_df = pd.read_csv('scales.csv')
+trait_options = scales_df['key'].unique()
+
+selected_trait = st.selectbox("Select a trait:", trait_options)
+selected_levels = st.multiselect("Select levels to generate text for:", ['low', 'medium', 'high'])
+
+if st.button('Submit', key='trait_text_submit'):
+    with st.spinner('Generating trait text...'):
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4-1106-preview', temperature=0.2)
+        chat_chain = LLMChain(prompt=PromptTemplate.from_template(trait_text_generation), llm=chat_model)
+        
+        trait_description = scales_df[scales_df['key'] == selected_trait]['Description'].values[0]
+        
+        trait_texts = {}
+        for level in selected_levels:
+            generated_output = chat_chain.run(TRAIT=selected_trait, LEVEL=level, DESCRIPTION=trait_description)
+            trait_texts[level] = generated_output
+        
+        for level, text in trait_texts.items():
+            st.write(f"**{level.capitalize()} Level:**")
+            st.write(text)

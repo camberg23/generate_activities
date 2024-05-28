@@ -77,7 +77,7 @@ if st.button('Submit'):
 st.write("---")
 st.markdown("## Insights Generator")
 
-selected_scales_insights = st.multiselect("Select which scales you'd like to generate activities for:", scale_options, key='insights')
+selected_scales_insights = st.multiselect("Select which scales you'd like to generate insights for:", scale_options, key='insights')
 N = st.number_input("Number of insights to generate for each HIGH and LOW scorer per trait:", min_value=1, max_value=10, value=3)
 
 if st.button('Submit', key='insights_submit'):

@@ -29,16 +29,60 @@ else:
     prompt = generate_generic_activities
     input = st.text_input("Enter any additional context you might want to give to generate these generic/univerally applicable activities")
     
+# if st.button('Submit'):
+#     with st.spinner('Generating activities...'):
+#         for_df = []
+#         ideations = []  # Store ideation texts here
+
+#         chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
+#         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
+        
+#         if activity_type == 'Trait-Specific':        
+    
+#             for scale, items in scale_items_dict.items():
+#                 items_str = ", ".join(items)
+            
+#             generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
+            
+#         else:
+#             generated_output = chat_chain.run(INPUT=input)
+            
+#         # Splitting the generated_output into ideation and activities parts
+#         ideation_part, activities_json = generated_output.split('ACTIVITIES:')
+#         ideations.append(ideation_part.strip().removeprefix('IDEATION:').strip())  # Add the ideation text to the list
+            
+#         for_df.extend(json.loads(activities_json.strip()))  # Strip in case there's leading/trailing whitespace
+        
+#         # Displaying ideations in an expander
+#         with st.expander("Ideation behind these activities"):
+#             for ideation in ideations:
+#                 st.write(ideation)
+        
+#         st.write(for_df)
+#         df = pd.DataFrame(for_df)
+#         st.write('Generated activities:')
+#         st.dataframe(df)
+
+#         # Convert DataFrame to CSV string
+#         csv = df.to_csv(index=False)
+        
+#         # Create a download button and offer the CSV string for download
+#         st.download_button(
+#             label="Download this as CSV",
+#             data=csv,
+#             file_name='generated_activities.csv',
+#             mime='text/csv',
+#         )
+
 if st.button('Submit'):
     with st.spinner('Generating activities...'):
         for_df = []
         ideations = []  # Store ideation texts here
 
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-08-06', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
-        if activity_type == 'Trait-Specific':        
-    
+        if activity_type == 'Trait-Specific':    
             for scale, items in scale_items_dict.items():
                 items_str = ", ".join(items)
             
@@ -58,14 +102,53 @@ if st.button('Submit'):
             for ideation in ideations:
                 st.write(ideation)
         
-        st.write(for_df)
+        # Convert the list of activities into a DataFrame
         df = pd.DataFrame(for_df)
+
+        # Adjust the DataFrame as per the boss's requirements
+        # Rename columns
+        df.rename(columns={
+            'Trait Level': 'Score',
+            'Categorization': 'Aspect',
+            'Domain': 'Category',
+            'Activity Type': 'Type'
+        }, inplace=True)
+
+        # Reorder columns
+        desired_order = ['Trait', 'Score', 'Title', 'Description', 'Activity', 'Aspect', 'Category', 'Type']
+        df = df[desired_order]
+
+        # Convert 'Trait' and 'Score' to lowercase
+        df['Trait'] = df['Trait'].str.lower()
+        df['Score'] = df['Score'].str.lower()
+
+        # Map 'Aspect' values
+        aspect_mapping = {
+            'HARNESS ADVANTAGES': 'Strength',
+            'ADDRESS DISADVANTAGES': 'Blindspot'
+        }
+        df['Aspect'] = df['Aspect'].map(aspect_mapping)
+
+        # Ensure 'Aspect' is capitalized correctly
+        df['Aspect'] = df['Aspect'].str.title()
+
+        # Ensure 'Category' is title case
+        df['Category'] = df['Category'].str.title()
+
+        # Map 'Type' values
+        type_mapping = {
+            'TIMED ACTIVITY': 'Timed',
+            'REFLECTION': 'Reflection'
+        }
+        df['Type'] = df['Type'].map(type_mapping)
+
+        # Display the adjusted DataFrame
         st.write('Generated activities:')
         st.dataframe(df)
 
         # Convert DataFrame to CSV string
         csv = df.to_csv(index=False)
-        
+
         # Create a download button and offer the CSV string for download
         st.download_button(
             label="Download this as CSV",

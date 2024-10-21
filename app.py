@@ -79,7 +79,7 @@ if st.button('Submit'):
         for_df = []
         ideations = []  # Store ideation texts here
 
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-08-06', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         if activity_type == 'Trait-Specific':    
@@ -105,42 +105,48 @@ if st.button('Submit'):
         # Convert the list of activities into a DataFrame
         df = pd.DataFrame(for_df)
 
-        # Adjust the DataFrame as per the boss's requirements
-        # Rename columns
+        # Adjust the DataFrame as per the developer's requirements
+
+        # 1. Rename columns to match the required names
         df.rename(columns={
-            'Trait Level': 'Score',
-            'Categorization': 'Aspect',
-            'Domain': 'Category',
-            'Activity Type': 'Type'
+            'Trait Level': 'score',
+            'Trait': 'trait',
+            'Title': 'title',
+            'Description': 'description',
+            'Activity': 'activity',
+            'Categorization': 'aspect',
+            'Domain': 'category',
+            'Activity Type': 'type'
         }, inplace=True)
 
-        # Reorder columns
-        desired_order = ['Trait', 'Score', 'Title', 'Description', 'Activity', 'Aspect', 'Category', 'Type']
-        df = df[desired_order]
+        # 2. Create 'trait_value' column by combining 'trait' and 'score'
+        df['trait_value'] = df['trait'].str.lower() + '/' + df['score'].str.lower()
 
-        # Convert 'Trait' and 'Score' to lowercase
-        df['Trait'] = df['Trait'].str.lower()
-        df['Score'] = df['Score'].str.lower()
+        # 3. Convert 'trait', 'score', and 'trait_value' to lowercase
+        df['trait'] = df['trait'].str.lower()
+        df['score'] = df['score'].str.lower()
+        df['trait_value'] = df['trait_value'].str.lower()
 
-        # Map 'Aspect' values
+        # 4. Map 'aspect' values to correct wording
         aspect_mapping = {
-            'HARNESS ADVANTAGES': 'Strength',
-            'ADDRESS DISADVANTAGES': 'Blindspot'
+            'HARNESS ADVANTAGES': 'strength',
+            'ADDRESS DISADVANTAGES': 'blindspot'
         }
-        df['Aspect'] = df['Aspect'].map(aspect_mapping)
+        df['aspect'] = df['aspect'].map(aspect_mapping)
 
-        # Ensure 'Aspect' is capitalized correctly
-        df['Aspect'] = df['Aspect'].str.title()
+        # 5. Convert 'category' to lowercase (or title case if needed)
+        df['category'] = df['category'].str.lower()  # Use .str.title() if title case is needed
 
-        # Ensure 'Category' is title case
-        df['Category'] = df['Category'].str.title()
-
-        # Map 'Type' values
+        # 6. Map 'type' values to correct wording
         type_mapping = {
-            'TIMED ACTIVITY': 'Timed',
-            'REFLECTION': 'Reflection'
+            'TIMED ACTIVITY': 'timed',
+            'REFLECTION': 'reflection'
         }
-        df['Type'] = df['Type'].map(type_mapping)
+        df['type'] = df['type'].map(type_mapping)
+
+        # 7. Reorder columns to match the desired order
+        desired_order = ['trait', 'score', 'trait_value', 'title', 'description', 'activity', 'aspect', 'category', 'type']
+        df = df[desired_order]
 
         # Display the adjusted DataFrame
         st.write('Generated activities:')

@@ -169,10 +169,17 @@ st.markdown("## Insights Generator")
 selected_scales_insights = st.multiselect("Select which scales you'd like to generate insights for:", scale_options, key='insights')
 N = st.number_input("Number of insights to generate for each HIGH and LOW scorer per trait:", min_value=1, max_value=10, value=3)
 
+horoscopify = st.checkbox('Horoscopify?')
+
 if st.button('Submit', key='insights_submit'):
     with st.spinner('Generating insights...'):
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
-        chat_chain = LLMChain(prompt=PromptTemplate.from_template(insights_generation), llm=chat_model)
+        if horoscopify:
+            prompt = insights_generation_horoscopify
+        else:
+            prompt = insights_generation_standard
+            
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-08-06', temperature=0.2)
+        chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         generated_output = chat_chain.run(SCALES=selected_scales_insights, N=N)
         make_df = json.loads(generated_output)
     # st.write(scale_items_dict)

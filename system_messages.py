@@ -319,86 +319,86 @@ Do not wrap this in ```json ```, just give the pure content of the array.
 YOUR OUTPUTS:
 """
 
-# insights_generation = """
-# Your job is to generate short insights for people who are high and low in the following traits: {SCALES}. You should generate {N} insights for HIGH scorers AND {N} insights for LOW scorers for EACH TRAIT! (total of N * 2 * number of traits)
-
-# These will be sent to users as push notifications, so they should fit within that scope and context.
-
-# The insights should be insightful (obviously) and valuable for someone who is high or low in that trait, and they should get something valuable from a push notification with the text of the insights.
-
-# Additionally, it is advisable to occasionally use or reference famous/wise quotations as or within an insight.
-
-# The insights should be meaningful and substantive, but almost fortune-cookie-like in their style.
-
-# The insights should generally be no more than one sentence long (if it is a quote, it should just be the quote + attribution; otherwise, just the idea/insight).
-
-# Please format your outputs as follows:
-# {{
-#   "Trait": "eg, Accomodating", 
-#   "Trait Level": "HIGH/LOW",
-#   "Insight": "The actual content of the insight"
-# }}
-
-# YOU SHOULD RETURN ALL SUCH ENTRIES FOR ALL TRAITS IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
-
-# [
-#   {{
-#     "Trait": "eg, Accomodating", 
-#     "Trait Level": "LOW",
-#     "Insight": "The actual content of the insight"
-#   }},
-#   {{
-#     "Trait": "eg, Accomodating", 
-#     "Trait Level": "HIGH",
-#     "Insight": "The actual content of the insight"
-#   }},
-#   ...
-# ]
-
-# Do not wrap this in ```json ```, just give the pure content of the array.
-
-# YOUR OUTPUTS:
-# """
-
 insights_generation = """
 Your job is to generate short insights for people who are high and low in the following traits: {SCALES}. You should generate {N} insights for HIGH scorers AND {N} insights for LOW scorers for EACH TRAIT! (total of N * 2 * number of traits)
 
-These will be sent to users as push notifications, so they should fit within that scope and context. Each insight should feel timely and personally relevant to the recipient's current journey.
+These will be sent to users as push notifications, so they should fit within that scope and context.
 
-The insights should:
-- Be insightful and valuable for someone who is high or low in that trait
-- Feel immediate and actionable ("Today might be a good time to..." or "Watch for opportunities to...")
-- Occasionally connect to current contexts (seasons, common work/life patterns, typical daily challenges)
-- Sometimes use or reference famous/wise quotations as or within an insight
-- Be meaningful and substantive, but almost fortune-cookie-like in their style
-- Generally be no more than one sentence long (if it is a quote, it should just be the quote + attribution; otherwise, just the idea/insight)
-- Connect to the present moment without making specific predictions
+The insights should be insightful (obviously) and valuable for someone who is high or low in that trait, and they should get something valuable from a push notification with the text of the insights.
+
+Additionally, it is advisable to occasionally use or reference famous/wise quotations as or within an insight.
+
+The insights should be meaningful and substantive, but almost fortune-cookie-like in their style.
+
+The insights should generally be no more than one sentence long (if it is a quote, it should just be the quote + attribution; otherwise, just the idea/insight).
 
 Please format your outputs as follows:
-{
+{{
   "Trait": "eg, Accomodating", 
   "Trait Level": "HIGH/LOW",
   "Insight": "The actual content of the insight"
-}
+}}
 
 YOU SHOULD RETURN ALL SUCH ENTRIES FOR ALL TRAITS IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
+
 [
-  {
+  {{
     "Trait": "eg, Accomodating", 
     "Trait Level": "LOW",
     "Insight": "The actual content of the insight"
-  },
-  {
+  }},
+  {{
     "Trait": "eg, Accomodating", 
     "Trait Level": "HIGH",
     "Insight": "The actual content of the insight"
-  },
+  }},
   ...
 ]
 
 Do not wrap this in ```json ```, just give the pure content of the array.
+
 YOUR OUTPUTS:
 """
+
+# insights_generation = """
+# Your job is to generate short insights for people who are high and low in the following traits: {SCALES}. You should generate {N} insights for HIGH scorers AND {N} insights for LOW scorers for EACH TRAIT! (total of N * 2 * number of traits)
+
+# These will be sent to users as push notifications, so they should fit within that scope and context. Each insight should feel timely and personally relevant to the recipient's current journey.
+
+# The insights should:
+# - Be insightful and valuable for someone who is high or low in that trait
+# - Feel immediate and actionable ("Today might be a good time to..." or "Watch for opportunities to...")
+# - Occasionally connect to current contexts (seasons, common work/life patterns, typical daily challenges)
+# - Sometimes use or reference famous/wise quotations as or within an insight
+# - Be meaningful and substantive, but almost fortune-cookie-like in their style
+# - Generally be no more than one sentence long (if it is a quote, it should just be the quote + attribution; otherwise, just the idea/insight)
+# - Connect to the present moment without making specific predictions
+
+# Please format your outputs as follows:
+# {
+#   "Trait": "eg, Accomodating", 
+#   "Trait Level": "HIGH/LOW",
+#   "Insight": "The actual content of the insight"
+# }
+
+# YOU SHOULD RETURN ALL SUCH ENTRIES FOR ALL TRAITS IN EXACTLY THIS FORMAT AS A SINGLE JSON ARRAY, LIKE SO:
+# [
+#   {
+#     "Trait": "eg, Accomodating", 
+#     "Trait Level": "LOW",
+#     "Insight": "The actual content of the insight"
+#   },
+#   {
+#     "Trait": "eg, Accomodating", 
+#     "Trait Level": "HIGH",
+#     "Insight": "The actual content of the insight"
+#   },
+#   ...
+# ]
+
+# Do not wrap this in ```json ```, just give the pure content of the array.
+# YOUR OUTPUTS:
+# """
 
 
 trait_text_generation = """

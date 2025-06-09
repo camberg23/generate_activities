@@ -30,7 +30,7 @@ if activity_type == 'Trait-Specific':
     selected_scale_display = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
     # Extract the scale key from the display format "Title (scale_key)"
     selected_scale = selected_scale_display.split(" (")[-1].rstrip(")")
-    scale_items_dict = {selected_scale: qs[qs['Scale Key'] == selected_scale]['Item Text'].tolist()}
+    scale_items_dict = {selected_scale: qs[qs['Trait Key'] == selected_scale]['Item Text'].tolist()}
 else:
     # For generic activity generation, no need for scale selection
     prompt = generate_generic_activities
@@ -41,7 +41,7 @@ if st.button('Submit'):
         for_df = []
         ideations = []  # Store ideation texts here
 
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4.1', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         if activity_type == 'Trait-Specific':    
@@ -141,7 +141,7 @@ if st.button('Submit', key='insights_submit'):
         else:
             prompt = insights_generation_standard
             
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4.1', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-08-06', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         # Extract scale keys from the selected display options
@@ -181,7 +181,7 @@ selected_levels = st.multiselect("Select levels to generate text for:", ['low', 
 
 if st.button('Submit', key='trait_text_submit'):
     with st.spinner('Generating trait text...'):
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4.1', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(trait_text_generation), llm=chat_model)
         
         trait_info = scales_df[scales_df['Scale'] == selected_trait]

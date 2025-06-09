@@ -15,8 +15,8 @@ st.markdown("## Activities Generator")
 activity_type = st.radio("Choose the type of activities to generate:", ('Trait-Specific', 'Generic'))
 
 # Load DataFrames with new structure
-qs = pd.read_csv('Updated App Test 6_5_25  Items.csv')
-scales_df = pd.read_csv('Updated App Test 6_5_25  Scales.csv')
+qs = pd.read_csv('Updated App Test 6_5_25 - Items.csv')
+scales_df = pd.read_csv('Updated App Test 6_5_25 - Scales.csv')
 
 # Create scale options using Scale column from scales CSV and get corresponding Scale Key from items CSV
 scale_options = []

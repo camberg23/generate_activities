@@ -32,6 +32,16 @@ for _, row in scales_df.iterrows():
         # Fallback if no matching scale key found
         scale_options.append(f"{title} ({trait_key})")
 
+# Sort by scale key (the part in parentheses) - alphabetically then numerically
+def sort_key(option):
+    scale_key = option.split(" (")[-1].rstrip(")")
+    # Extract letter and number parts for proper sorting
+    letter = ''.join(filter(str.isalpha, scale_key))
+    number = ''.join(filter(str.isdigit, scale_key))
+    return (letter, int(number) if number else 0)
+
+scale_options.sort(key=sort_key)
+
 if activity_type == 'Trait-Specific':
     prompt = generate_eight_activities
     selected_scale_display = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')

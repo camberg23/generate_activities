@@ -14,16 +14,22 @@ st.markdown("## Activities Generator")
 
 activity_type = st.radio("Choose the type of activities to generate:", ('Trait-Specific', 'Generic'))
 
-# Load DataFrame with new structure
+# Load DataFrames with new structure
 qs = pd.read_csv('Updated App Test 6_5_25  Items.csv')
+scales_df = pd.read_csv('Updated App Test 6_5_25  Scales.csv')
 
-# Create scale options using Scale Key (since Scale Name is not available)
-scale_options = sorted(qs['Scale Key'].unique())
+# Create scale options using Scale column from the scales CSV for better display names
+scale_options = []
+for _, row in scales_df.iterrows():
+    scale_key = row['Scale']
+    title = row['Title']
+    scale_options.append(f"{title} ({scale_key})")
 
 if activity_type == 'Trait-Specific':
     prompt = generate_eight_activities
-    selected_scale = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
-    # Use the selected scale key directly
+    selected_scale_display = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
+    # Extract the scale key from the display format "Title (scale_key)"
+    selected_scale = selected_scale_display.split(" (")[-1].rstrip(")")
     scale_items_dict = {selected_scale: qs[qs['Scale Key'] == selected_scale]['Item Text'].tolist()}
 else:
     # For generic activity generation, no need for scale selection
@@ -35,7 +41,7 @@ if st.button('Submit'):
         for_df = []
         ideations = []  # Store ideation texts here
 
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4.1', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         if activity_type == 'Trait-Specific':    
@@ -135,9 +141,16 @@ if st.button('Submit', key='insights_submit'):
         else:
             prompt = insights_generation_standard
             
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-08-06', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4.1', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
-        generated_output = chat_chain.run(SCALES=selected_scales_insights, N=N)
+        
+        # Extract scale keys from the selected display options
+        selected_scale_keys = []
+        for display_option in selected_scales_insights:
+            scale_key = display_option.split(" (")[-1].rstrip(")")
+            selected_scale_keys.append(scale_key)
+        
+        generated_output = chat_chain.run(SCALES=selected_scale_keys, N=N)
         make_df = json.loads(generated_output)
     
     df = pd.DataFrame(make_df)
@@ -160,23 +173,22 @@ if st.button('Submit', key='insights_submit'):
 st.write("---")
 st.markdown("## Trait Text Generator")
 
-# Load scales DataFrame for trait text generator (assuming this file structure remains the same)
-scales_df = pd.read_csv('scales.csv')
-trait_options = scales_df['key'].unique()
+# Use the new scales DataFrame for trait text generator
+trait_options = scales_df['Scale'].unique()
 
 selected_trait = st.selectbox("Select a trait:", trait_options)
 selected_levels = st.multiselect("Select levels to generate text for:", ['low', 'medium', 'high'])
 
 if st.button('Submit', key='trait_text_submit'):
     with st.spinner('Generating trait text...'):
-        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4o-2024-05-13', temperature=0.2)
+        chat_model = ChatOpenAI(openai_api_key=st.secrets['API_KEY'], model_name='gpt-4.1', temperature=0.2)
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(trait_text_generation), llm=chat_model)
         
-        trait_info = scales_df[scales_df['key'] == selected_trait]
+        trait_info = scales_df[scales_df['Scale'] == selected_trait]
         trait_description = trait_info['Description'].values[0]
         high_label = trait_info['High Label'].values[0]
         low_label = trait_info['Low Label'].values[0]
-        UI_label = trait_info['UI Title'].values[0]
+        UI_label = trait_info['Title'].values[0]  # Using 'Title' instead of 'UI Title'
         
         trait_texts = {}
         for level in selected_levels:

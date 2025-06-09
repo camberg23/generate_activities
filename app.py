@@ -15,22 +15,36 @@ st.markdown("## Activities Generator")
 activity_type = st.radio("Choose the type of activities to generate:", ('Trait-Specific', 'Generic'))
 
 # Load DataFrames with new structure
-qs = pd.read_csv('Updated App Test 6_5_25 - Items.csv')
-scales_df = pd.read_csv('Updated App Test 6_5_25 - Scales.csv')
+qs = pd.read_csv('Updated App Test 6_5_25  Items.csv')
+scales_df = pd.read_csv('Updated App Test 6_5_25  Scales.csv')
 
-# Create scale options using Scale column from the scales CSV for better display names
+# Create scale options using Scale column from scales CSV and get corresponding Scale Key from items CSV
 scale_options = []
 for _, row in scales_df.iterrows():
-    scale_key = row['Scale']
+    trait_key = row['Scale']  # This is actually the trait key
     title = row['Title']
-    scale_options.append(f"{title} ({scale_key})")
+    # Find the corresponding Scale Key from the items CSV
+    scale_key_row = qs[qs['Trait Key'] == trait_key].iloc[0] if len(qs[qs['Trait Key'] == trait_key]) > 0 else None
+    if scale_key_row is not None:
+        scale_key = scale_key_row['Scale Key']
+        scale_options.append(f"{title} ({scale_key})")
+    else:
+        # Fallback if no matching scale key found
+        scale_options.append(f"{title} ({trait_key})")
 
 if activity_type == 'Trait-Specific':
     prompt = generate_eight_activities
     selected_scale_display = st.selectbox("Select which scale you'd like to generate activities for:", scale_options, key='activities')
-    # Extract the scale key from the display format "Title (scale_key)"
-    selected_scale = selected_scale_display.split(" (")[-1].rstrip(")")
-    scale_items_dict = {selected_scale: qs[qs['Trait Key'] == selected_scale]['Item Text'].tolist()}
+    # Extract the scale key from the display format "Title (scale_key)" 
+    selected_scale_key = selected_scale_display.split(" (")[-1].rstrip(")")
+    # Find the corresponding trait key for this scale key
+    trait_key_row = qs[qs['Scale Key'] == selected_scale_key].iloc[0] if len(qs[qs['Scale Key'] == selected_scale_key]) > 0 else None
+    if trait_key_row is not None:
+        selected_trait_key = trait_key_row['Trait Key']
+        scale_items_dict = {selected_trait_key: qs[qs['Trait Key'] == selected_trait_key]['Item Text'].tolist()}
+    else:
+        # Fallback - shouldn't happen if data is aligned
+        scale_items_dict = {selected_scale_key: []}
 else:
     # For generic activity generation, no need for scale selection
     prompt = generate_generic_activities
@@ -45,10 +59,10 @@ if st.button('Submit'):
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         if activity_type == 'Trait-Specific':    
-            for scale, items in scale_items_dict.items():
+            for trait_key, items in scale_items_dict.items():
                 items_str = ", ".join(items)
             
-            generated_output = chat_chain.run(SCALE=scale, ITEMS=items_str)
+            generated_output = chat_chain.run(SCALE=trait_key, ITEMS=items_str)
             
         else:
             generated_output = chat_chain.run(INPUT=input)
@@ -145,12 +159,15 @@ if st.button('Submit', key='insights_submit'):
         chat_chain = LLMChain(prompt=PromptTemplate.from_template(prompt), llm=chat_model)
         
         # Extract scale keys from the selected display options
-        selected_scale_keys = []
+        selected_trait_keys = []
         for display_option in selected_scales_insights:
             scale_key = display_option.split(" (")[-1].rstrip(")")
-            selected_scale_keys.append(scale_key)
+            # Find the corresponding trait key for this scale key
+            trait_key_row = qs[qs['Scale Key'] == scale_key].iloc[0] if len(qs[qs['Scale Key'] == scale_key]) > 0 else None
+            if trait_key_row is not None:
+                selected_trait_keys.append(trait_key_row['Trait Key'])
         
-        generated_output = chat_chain.run(SCALES=selected_scale_keys, N=N)
+        generated_output = chat_chain.run(SCALES=selected_trait_keys, N=N)
         make_df = json.loads(generated_output)
     
     df = pd.DataFrame(make_df)

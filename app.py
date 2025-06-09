@@ -201,9 +201,30 @@ st.write("---")
 st.markdown("## Trait Text Generator")
 
 # Use the new scales DataFrame for trait text generator
-trait_options = scales_df['Scale'].unique()
+# Create scale options using Scale column from scales CSV and get corresponding Scale Key from items CSV
+scale_options = []
+for _, row in scales_df.iterrows():
+    trait_key = row['Scale']  # This is actually the trait key
+    title = row['Title']
+    # Find the corresponding Scale Key from the items CSV
+    scale_key_row = qs[qs['Trait Key'] == trait_key].iloc[0] if len(qs[qs['Trait Key'] == trait_key]) > 0 else None
+    if scale_key_row is not None:
+        scale_key = scale_key_row['Scale Key']
+        scale_options.append(f"{title} ({scale_key})")
+    else:
+        # Fallback if no matching scale key found
+        scale_options.append(f"{title} ({trait_key})")
 
-selected_trait = st.selectbox("Select a trait:", trait_options)
+# Sort by scale key (the part in parentheses) - alphabetically then numerically
+def sort_key(option):
+    scale_key = option.split(" (")[-1].rstrip(")")
+    # Extract letter and number parts for proper sorting
+    letter = ''.join(filter(str.isalpha, scale_key))
+    number = ''.join(filter(str.isdigit, scale_key))
+    return (letter, int(number) if number else 0)
+
+scale_options.sort(key=sort_key)
+
 selected_levels = st.multiselect("Select levels to generate text for:", ['low', 'medium', 'high'])
 
 if st.button('Submit', key='trait_text_submit'):

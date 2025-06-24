@@ -27,10 +27,13 @@ for _, row in scales_df.iterrows():
     scale_key_row = qs[qs['Trait Key'] == trait_key].iloc[0] if len(qs[qs['Trait Key'] == trait_key]) > 0 else None
     if scale_key_row is not None:
         scale_key = scale_key_row['Scale Key']
-        scale_options.append(f"{title} ({scale_key})")
+        scale_options.append(f"{row['Scale']} — {row['Title']} ({scale_key})")
+        # scale_options.append(f"{title} ({scale_key})")
     else:
         # Fallback if no matching scale key found
-        scale_options.append(f"{title} ({trait_key})")
+        scale_options.append(f"{row['Scale']} — {row['Title']} ({scale_key})")
+
+        # scale_options.append(f"{title} ({trait_key})")
 
 # Sort by scale key (the part in parentheses) - alphabetically then numerically
 def sort_key(option):
